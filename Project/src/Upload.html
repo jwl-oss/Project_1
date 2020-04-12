@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <link rel="stylesheet" type="text/css" href="CSS/Upload.css">
+</head>
+<body>
+<script type="text/javascript">
+    function imgPreview(fileDom){
+        const reader = new FileReader();
+//判断是否支持FileReader
+        if (window.FileReader) {
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        const file = fileDom.files[0];
+        const imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            const img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+
+<div class="sticky">
+    <ul>
+        <li><img src="travel-images/square/square-tiny/9498358806.jpg" width="48" height="48"></li>
+        <li><a href="Home.html" class="Home">Home</a></li>
+        <li><a href="Browser.html" class="Browse">Browse</a></li>
+        <li><a href="Search.html" class="Search">Search</a></li>
+        <div class="dropdown">
+            <button class="Account">My Account</button>
+            <div class="dropdown-content">
+                <a href="Upload.html">Upload</a>
+                <a href="Favor.html">Favor</a>
+                <a href="LoginIn.html">LoginIn</a>
+                <a href="My_Photo.html">My_Photo</a>
+                <a href="Uploaded.html">Uploaded</a>
+            </div>
+        </div>
+    </ul>
+</div>
+
+<div class="Upload" style="float: left">
+    <table class="content" width="1350" cellspacing="0" cellpadding="0">
+        <thead class="table_head">
+        <tr>
+            <th>Upload</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+             <form>
+                 <img id="preview" />
+                 <br />
+                 <input type="file" name="file" onchange="imgPreview(this)" />
+                 <h4>图片标题：</h4>
+                 <input type="text" style="width: 1250px;height: 30px"><br>
+                 <h4>图片描述：</h4>
+                 <input type="text" style="width: 1250px;height: 100px;">
+                 <h4>拍摄国家：</h4>
+                 <input type="text" style="width: 1250px;height: 30px">
+                 <h4>拍摄城市：</h4>
+                 <input type="text" style="width: 1250px;height: 30px">
+                 <a href="My_Photo.html"><button style="margin-top: 20px" onclick="alert('上传成功')">Submit</button></form></a>
+             </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<div style="float: left">
+    <footer>
+        Copyright @2019-2021 Web fundamental.All Rights Reserved.备案号：19302010076
+    </footer>
+    <br>
+</div>
+
+</body>
+</html>
